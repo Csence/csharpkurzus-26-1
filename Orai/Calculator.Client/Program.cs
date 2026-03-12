@@ -1,11 +1,30 @@
-﻿using Calculator.Core;
+﻿using System.Diagnostics;
 
-Console.WriteLine("Welcome to the calculator!");
-Console.Write("> ");
+using Calculator.Core;
 
-string expression = Console.ReadLine() ?? string.Empty;
+internal class Program
+{
+    private static int Main(string[] args)
+    {
+        Console.WriteLine("Welcome to the calculator!");
+        Console.Write("> ");
 
-ICalculator calculator = CalculatorFactory.Create();
-double result = calculator.Calculate(expression);
+        string expression = Console.ReadLine() ?? string.Empty;
 
-Console.WriteLine(result);
+        ICalculator calculator = CalculatorFactory.Create();
+        Either<double, Exception> result = calculator.Calculate(expression);
+
+        if (result.TryGetSuccess(out double validResult))
+        {
+            Console.WriteLine(validResult);
+            return 0;
+        }
+        else if (result.TryGetError(out Exception? ex))
+        {
+            Console.WriteLine(ex.Message);
+            return -1;
+        }
+
+        throw new UnreachableException("This shouldn't happen");
+    }
+}

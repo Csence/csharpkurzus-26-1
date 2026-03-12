@@ -1,14 +1,23 @@
-﻿namespace Calculator.Core;
+﻿using Calculator.Core.Tokens;
+
+namespace Calculator.Core;
 
 internal class Calculator(ITokenizer tokenizer, INumberStack numberStack) : ICalculator
 {
-    public double Calculate(string expression)
+    public Either<double, Exception> Calculate(string expression)
     {
-        foreach (IToken token in tokenizer.Tokenize(expression))
+        try
         {
-            token.Apply(numberStack);
-        }
+            foreach (IToken token in tokenizer.Tokenize(expression))
+            {
+                token.Apply(numberStack);
+            }
 
-        return numberStack.Pop();
+            return numberStack.Pop();
+        }
+        catch (Exception e)
+        {
+            return e;
+        }
     }
 }

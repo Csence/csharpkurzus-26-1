@@ -1,4 +1,4 @@
-﻿namespace Calculator.Core;
+﻿namespace Calculator.Core.Tokens.Operations;
 
 internal sealed class Division : BinaryOperation
 {

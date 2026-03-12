@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Calculator.Core;
+namespace Calculator.Core.Tokens.Operations;
 
 internal static class OperationPrecedence
 {

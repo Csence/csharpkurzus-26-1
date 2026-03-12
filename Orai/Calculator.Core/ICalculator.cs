@@ -2,5 +2,5 @@
 
 public interface ICalculator
 {
-    double Calculate(string expression);
+    Either<double, Exception> Calculate(string expression);
 }

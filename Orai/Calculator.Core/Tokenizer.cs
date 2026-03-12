@@ -1,4 +1,8 @@
-﻿using static System.StringSplitOptions;
+﻿using Calculator.Core.Tokens;
+using Calculator.Core.Tokens.Numbers;
+using Calculator.Core.Tokens.Operations;
+
+using static System.StringSplitOptions;
 
 namespace Calculator.Core;
 

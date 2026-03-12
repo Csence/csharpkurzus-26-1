@@ -1,4 +1,4 @@
-﻿namespace Calculator.Core;
+﻿namespace Calculator.Core.Tokens.Numbers;
 
 public class NumberToken(double number) : IToken
 {

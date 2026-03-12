@@ -1,4 +1,4 @@
-﻿namespace Calculator.Core;
+﻿namespace Calculator.Core.Tokens;
 
 public interface IToken
 {
