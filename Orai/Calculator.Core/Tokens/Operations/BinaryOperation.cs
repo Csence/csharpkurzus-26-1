@@ -9,8 +9,8 @@ internal abstract class BinaryOperation : Operation
             throw new InvalidOperationException("Not enugh values on stack");
         }
 
-        double left = stack.Pop();
         double right = stack.Pop();
+        double left = stack.Pop();
 
         double result = Apply(left, right);
 

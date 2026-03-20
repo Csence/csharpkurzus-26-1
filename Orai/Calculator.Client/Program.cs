@@ -14,7 +14,7 @@ internal class Program
         ICalculator calculator = CalculatorFactory.Create();
         Either<double, Exception> result = calculator.Calculate(expression);
 
-        if (result.TryGetSuccess(out double validResult))
+        if (result.TryGetSuccess(out double? validResult))
         {
             Console.WriteLine(validResult);
             return 0;

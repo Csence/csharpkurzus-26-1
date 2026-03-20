@@ -9,7 +9,7 @@ public static class CalculatorFactory
     public static ICalculator Create()
     {
         Tokenizer tokenizer = new Tokenizer();
-        NumberStack numberStack = new NumberStack(10);
+        NumberStack numberStack = new NumberStack();
 
         return new Calculator(tokenizer, numberStack);
     }

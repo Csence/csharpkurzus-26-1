@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 
 namespace Calculator.Core;
 
 public sealed class Either<TSuccess, TError>
+    where TError : Exception
+    where TSuccess : struct, INumber<TSuccess>
 {
     private readonly TSuccess? _success;
     private readonly bool _isSucces;

@@ -14,6 +14,14 @@ internal class Tokenizer : ITokenizer
         ["-"] = new Subtraction(),
         ["*"] = new Multiplication(),
         ["/"] = new Division(),
+        ["sin"] = new FunctionOperation(Math.Sin),
+        ["cos"] = new FunctionOperation(Math.Cos),
+        ["tan"] = new FunctionOperation(Math.Tan),
+        ["arctan"] = new FunctionOperation(Math.Atan),
+        ["arccos"] = new FunctionOperation(Math.Acos),
+        ["arcsin"] = new FunctionOperation(Math.Asin),
+        ["pi"] = new PiToken(),
+        ["e"] = new EToken(),
     };
 
     public IEnumerable<IToken> Tokenize(string expression)
