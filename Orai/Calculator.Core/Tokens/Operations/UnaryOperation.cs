@@ -6,7 +6,7 @@ internal abstract class UnaryOperation : Operation
     {
         if (stack.Count < 1)
         {
-            throw new InvalidOperationException("Not enugh values on stack");
+            throw new InvalidOperationException("Not enough values on stack");
         }
 
         double value = stack.Pop();

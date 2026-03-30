@@ -6,7 +6,7 @@ internal abstract class BinaryOperation : Operation
     {
         if (stack.Count < 2)
         {
-            throw new InvalidOperationException("Not enugh values on stack");
+            throw new InvalidOperationException("Not enough values on stack");
         }
 
         double right = stack.Pop();

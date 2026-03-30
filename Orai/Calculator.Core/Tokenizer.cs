@@ -22,6 +22,13 @@ internal class Tokenizer : ITokenizer
         ["arcsin"] = new FunctionOperation(Math.Asin),
         ["pi"] = new PiToken(),
         ["e"] = new EToken(),
+        ["avg"] = new Average(),
+        ["max"] = new Maximum(),
+        ["median"] = new Median(),
+        ["min"] = new Minimum(),
+        ["mode"] = new Mode(),
+        ["rms"] = new RootMeanSquare(),
+        ["sum"] = new Sum()
     };
 
     public IEnumerable<IToken> Tokenize(string expression)
