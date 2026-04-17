@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Calculator.Core.Tokens.Operations;
 
+[TokenName("sum")]
 internal sealed class Sum : AggregateOperation
 {
     public override int Precedence => OperationPrecedence.FunctionCall;

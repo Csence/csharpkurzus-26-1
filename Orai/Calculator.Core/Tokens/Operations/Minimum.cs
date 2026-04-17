@@ -2,6 +2,7 @@
 
 namespace Calculator.Core.Tokens;
 
+[TokenName("min")]
 internal sealed class Minimum : AggregateOperation
 {
     public override int Precedence => OperationPrecedence.FunctionCall;

@@ -1,5 +1,6 @@
 ﻿namespace Calculator.Core.Tokens.Operations;
 
+[TokenName("max")]
 internal sealed class Maximum : AggregateOperation
 {
     public override int Precedence => OperationPrecedence.FunctionCall;

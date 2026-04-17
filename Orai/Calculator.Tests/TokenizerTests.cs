@@ -9,7 +9,7 @@ internal class TokenizerTests
     public void Tokenize_ExpressionIsValid_ReturnsCorrectNumberOfTokens()
     {
         // Arrange
-        Tokenizer tokenizer = new();
+        Tokenizer tokenizer = new(new TokenProvider());
 
         // Act
         IReadOnlyList<IToken> tokens = tokenizer.Tokenize("3 4 +").ToList();
@@ -22,7 +22,7 @@ internal class TokenizerTests
     public void Tokenize_ExpressionIsEmpty_ReturnsEmptyTokenList()
     {
         // Arrange
-        Tokenizer tokenizer = new();
+        Tokenizer tokenizer = new(new TokenProvider());
 
         // Act
         IReadOnlyList<IToken> tokens = tokenizer.Tokenize("").ToList();
@@ -35,7 +35,7 @@ internal class TokenizerTests
     public void Tokenize_ExpressionContainsExtraSpaces_IgnoresExtraSpaces()
     {
         // Arrange
-        Tokenizer tokenizer = new();
+        Tokenizer tokenizer = new(new TokenProvider());
 
         // Act
         IReadOnlyList<IToken> tokens = tokenizer.Tokenize("  3   4   +  ").ToList();
@@ -48,7 +48,7 @@ internal class TokenizerTests
     public void Tokenize_UnrecognizedToken_ThrowsInvalidOperationException()
     {
         // Arrange
-        Tokenizer tokenizer = new();
+        Tokenizer tokenizer = new(new TokenProvider());
 
         // Act & Assert
         Assert.That(() => tokenizer.Tokenize("3 4 §").ToList(), Throws.InvalidOperationException);

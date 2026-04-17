@@ -1,5 +1,6 @@
 ﻿namespace Calculator.Core.Tokens.Operations;
 
+[TokenName("rms")]
 internal sealed class RootMeanSquare : AggregateOperation
 {
     public override int Precedence => OperationPrecedence.FunctionCall;

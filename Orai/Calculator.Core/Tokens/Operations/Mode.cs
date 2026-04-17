@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Calculator.Core.Tokens.Operations;
 
+[TokenName("mode")]
 internal sealed class Mode : AggregateOperation
 {
     public override int Precedence => OperationPrecedence.FunctionCall;

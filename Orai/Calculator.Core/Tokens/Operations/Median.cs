@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Calculator.Core.Tokens.Operations;
 
+[TokenName("median")]
 internal sealed class Median : AggregateOperation
 {
     public override int Precedence => OperationPrecedence.FunctionCall;
