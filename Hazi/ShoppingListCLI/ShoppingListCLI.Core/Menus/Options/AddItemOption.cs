@@ -7,7 +7,7 @@ using ShoppingListCLI.ShoppingListCLI.Core.Models;
 
 namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
 
-public static class AddItemOption
+public static class AddItemOption : IOption
 {
     public async static void Open()
     {

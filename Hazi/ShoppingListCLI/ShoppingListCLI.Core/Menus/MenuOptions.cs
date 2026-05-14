@@ -1,4 +1,4 @@
-﻿namespace ShoppingListCLI;
+﻿namespace ShoppingListCLI.ShoppingListCLI.Core.Menus;
 
 internal enum MenuOptions
 {
