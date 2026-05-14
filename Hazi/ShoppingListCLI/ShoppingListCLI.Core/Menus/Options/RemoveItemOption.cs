@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using ShoppingListCLI.Core.Storage;
+﻿using ShoppingListCLI.Core.Storage;
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
 using ShoppingListCLI.ShoppingListCLI.Core.Services;
 
@@ -18,8 +14,8 @@ internal class RemoveItemOption(IStorage storage) : IOption
         Console.Clear();
 
         Console.WriteLine("===========================\n" +
-                          "Bevásárlólista törlése\n" +
-                          "===========================");
+                  "Bevásárlólista törlése\n" +
+                  "===========================");
 
         List<ShoppingList> shoppingLists = await _storage.LoadAsync();
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
+﻿namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
 
 internal interface IOption
 {

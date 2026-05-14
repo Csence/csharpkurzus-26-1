@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using ShoppingListCLI.ShoppingListCLI.Core.Models;
+﻿using ShoppingListCLI.ShoppingListCLI.Core.Models;
 
 namespace ShoppingListCLI.Core.Storage;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using ShoppingListCLI.Core.Storage;
+﻿using ShoppingListCLI.Core.Storage;
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
 using ShoppingListCLI.ShoppingListCLI.Core.Services;
 
@@ -14,9 +10,14 @@ internal class ViewItemsOption(IStorage storage) : IOption
 
     public async void Open()
     {
+        Console.Clear();
+
+        Console.WriteLine("================================\n" +
+                  "Bevásárlólisták (ABC sorrendben)\n" +
+                  "================================\n\n");
+
         List<ShoppingList> shoppingLists = await _storage.LoadAsync();
 
-        Console.Clear();
         ViewItemsOptionService.
                 ShowUserShoppingLists(shoppingLists);
 

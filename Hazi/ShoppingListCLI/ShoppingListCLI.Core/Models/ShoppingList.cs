@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShoppingListCLI.ShoppingListCLI.Core.Models;
+﻿namespace ShoppingListCLI.ShoppingListCLI.Core.Models;
 
 public record class ShoppingList
 {

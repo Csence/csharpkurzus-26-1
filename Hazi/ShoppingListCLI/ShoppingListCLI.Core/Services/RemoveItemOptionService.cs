@@ -8,6 +8,7 @@ internal static class RemoveItemOptionService
     internal static List<ShoppingList> ReadUserRemoveShoppingListInput(List<ShoppingList> shoppingLists)
     {
         Console.Write("Add meg a törölni kívánt bevásárlólista nevét: ");
+
         string shoppingListName = Console.ReadLine();
         if (shoppingListName.Equals("")
            | shoppingListName == null)

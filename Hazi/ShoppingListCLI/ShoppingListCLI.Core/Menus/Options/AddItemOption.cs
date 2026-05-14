@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using ShoppingListCLI.Core.Storage;
+﻿using ShoppingListCLI.Core.Storage;
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
 using ShoppingListCLI.ShoppingListCLI.Core.Services;
 
@@ -16,15 +12,19 @@ public class AddItemOption(IStorage storage) : IOption
     {
         Console.Clear();
 
-        List<ShoppingList> shoppingLists = await _storage.LoadAsync();
-
         Console.WriteLine("===========================\n" +
                   "Új bevásárlólista létrehozása\n" +
                   "===========================");
+
+        List<ShoppingList> shoppingLists = await _storage.LoadAsync();
 
         ShoppingList shoppingList = AddItemOptionService.ReadUserShoppingListInput();
 
         shoppingLists.Add(shoppingList);
         await _storage.SaveAsync(shoppingLists);
+        Console.WriteLine("Sikeres hozzáadás!");
+        Console.WriteLine("Nyomj meg egy gombot a visszalépéshez...");
+        Console.ReadKey();
+        Menu.ShowMenu();
     }
 }

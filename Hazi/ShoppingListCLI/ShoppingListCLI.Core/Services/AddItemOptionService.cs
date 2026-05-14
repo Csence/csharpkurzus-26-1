@@ -1,5 +1,4 @@
-﻿using ShoppingListCLI.ShoppingListCLI.Core.Menus;
-using ShoppingListCLI.ShoppingListCLI.Core.Models;
+﻿using ShoppingListCLI.ShoppingListCLI.Core.Models;
 
 namespace ShoppingListCLI.ShoppingListCLI.Core.Services;
 
@@ -41,7 +40,6 @@ internal static class AddItemOptionService
             else if (input == "n")
             {
                 isAddingItems = false;
-                Menu.ShowMenu();
             }
             else
             {
