@@ -6,5 +6,5 @@ namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
 
 internal interface IOption
 {
-    public static abstract void Open();
+    public void Open();
 }

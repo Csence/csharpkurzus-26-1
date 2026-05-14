@@ -4,32 +4,21 @@ using System.Text;
 
 using ShoppingListCLI.Core.Storage;
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
+using ShoppingListCLI.ShoppingListCLI.Core.Services;
 
 namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
 
-internal class ViewItemsOption : IOption
+internal class ViewItemsOption(IStorage storage) : IOption
 {
-    public async static void Open()
+    private readonly IStorage _storage = storage;
+
+    public async void Open()
     {
-        var storage = new JsonStorage();
-        List<ShoppingList> shoppingLists = await storage.LoadAsync();
+        List<ShoppingList> shoppingLists = await _storage.LoadAsync();
 
         Console.Clear();
-        Console.WriteLine("===========================\n" +
-                          "Bevásárlólista megnyitása\n" +
-                          "===========================\n\n");
-        foreach (ShoppingList list in shoppingLists)
-        {
-            Console.WriteLine("Bevásárlólista neve: " + list.Name);
-            Console.WriteLine("Elemek:");
-            foreach (Item item in list.Items)
-            {
-                Console.WriteLine("------------------------------");
-                Console.WriteLine("     -Elem neve: " + item.ItemName);
-                Console.WriteLine("     -Elem mennyiség(db/g): " + item.Quantity.ToString());
-            }
-            Console.WriteLine("==============================");
-        }
+        ViewItemsOptionService.
+                ShowUserShoppingLists(shoppingLists);
 
         Console.WriteLine("Nyomj meg egy gombot a visszalépéshez...");
         Console.ReadKey();

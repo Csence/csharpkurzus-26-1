@@ -4,40 +4,30 @@ using System.Text;
 
 using ShoppingListCLI.Core.Storage;
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
+using ShoppingListCLI.ShoppingListCLI.Core.Services;
 
 namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
 
-internal class RemoveItemOption : IOption
+internal class RemoveItemOption(IStorage storage) : IOption
 {
 
-    public async static void Open()
+    private readonly IStorage _storage = storage;
+
+    public async void Open()
     {
         Console.Clear();
+
         Console.WriteLine("===========================\n" +
                           "Bevásárlólista törlése\n" +
                           "===========================");
-        Console.Write("Add meg a törölni kívánt bevásárlólista nevét: ");
-        string shoppingListName = Console.ReadLine();
-        var storage = new JsonStorage();
-        List<ShoppingList> shoppingLists = await storage.LoadAsync();
 
-        List<ShoppingList> shoppingListToRemove = shoppingLists.Where(list => list.Name == shoppingListName).ToList();
-        
-        if (shoppingListToRemove.Count != 0)
-        {
+        List<ShoppingList> shoppingLists = await _storage.LoadAsync();
 
-            foreach (var item in shoppingListToRemove)
-            {
-                shoppingLists.Remove(item);
-            }
+        shoppingLists = RemoveItemOptionService.ReadUserRemoveShoppingListInput(shoppingLists);
 
-            await storage.SaveAsync(shoppingLists);
-            Console.WriteLine("A bevásárlólista sikeresen törölve.");
-        }
-        else
-        {
-            Console.WriteLine("Nem található ilyen nevű bevásárlólista.");
-        }
+        await _storage.SaveAsync(shoppingLists);
+            
+       
         Console.WriteLine("Nyomj meg egy gombot a visszalépéshez...");
         Console.ReadKey();
         Menu.ShowMenu();

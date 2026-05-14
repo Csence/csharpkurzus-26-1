@@ -4,10 +4,8 @@ using System.Text;
 
 namespace ShoppingListCLI.ShoppingListCLI.Core.Models;
 
-public class Item
+public record class Item
 {
-
     public string? ItemName { get; set; }
-    public int Quantity { get; set; }
-
+    public int? Quantity { get; set; }
 }

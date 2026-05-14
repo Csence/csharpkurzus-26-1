@@ -6,9 +6,9 @@ using ShoppingListCLI.ShoppingListCLI.Core.Models;
 
 namespace ShoppingListCLI.Core.Storage;
 
-internal interface IStorage
+public interface IStorage
 {
-    Task SaveAsync(List<ShoppingList> shoppingList);
+    public Task SaveAsync(List<ShoppingList> shoppingList);
 
-    Task<List<ShoppingList>> LoadAsync();
+    public Task<List<ShoppingList>> LoadAsync();
 }

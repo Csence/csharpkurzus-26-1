@@ -13,31 +13,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        IStorage storage = new JsonStorage();
-
-        Menu.ShowMenu();
-
-        while (true)
-        {
-            string input = Console.ReadLine().Trim();
-            bool isValidInput = Enum.TryParse<MenuOptions>(input, out MenuOptions option);
-            if (option == MenuOptions.AddItem)
-            {
-                AddItemOption.Open();
-            } else if (option == MenuOptions.ViewList)
-            {
-                ViewItemsOption.Open();
-            }
-            else if (option == MenuOptions.RemoveList)
-            {
-                RemoveItemOption.Open();
-            }
-
-            if (input == "4")
-            {
-                return;
-            }
-        }
-        
+        Menu menu = new Menu();
+        menu.Start();
     }
 }

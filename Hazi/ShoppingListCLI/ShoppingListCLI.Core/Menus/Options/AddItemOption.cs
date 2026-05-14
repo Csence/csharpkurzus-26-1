@@ -4,49 +4,27 @@ using System.Text;
 
 using ShoppingListCLI.Core.Storage;
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
+using ShoppingListCLI.ShoppingListCLI.Core.Services;
 
 namespace ShoppingListCLI.ShoppingListCLI.Core.Menus.Options;
 
-public static class AddItemOption : IOption
+public class AddItemOption(IStorage storage) : IOption
 {
-    public async static void Open()
+    private readonly IStorage _storage = storage;
+
+    public async void Open()
     {
         Console.Clear();
-        var storage = new JsonStorage();
-        List<ShoppingList> list = await storage.LoadAsync();
+
+        List<ShoppingList> shoppingLists = await _storage.LoadAsync();
 
         Console.WriteLine("===========================\n" +
                   "Új bevásárlólista létrehozása\n" +
                   "===========================");
-        Console.Write("Add meg a bevásárlólista nevét: ");
 
-        string shoppingListName = Console.ReadLine();
-        ShoppingList shoppingList = new ShoppingList();
-        shoppingList.Items = new List<Item>();
-        shoppingList.Name = shoppingListName;
-        bool isAddingItems = true;
-        while (isAddingItems)
-        {
-            Console.Write("Szeretnél elemet adni a bevásárlólistához(I/n): ");
-            string input = Console.ReadLine().ToLower();
-            if (input == "i")
-            {
-                Console.Write("Add meg az elem nevét: ");
-                string itemName = Console.ReadLine();
-                Console.Write("Add meg az elem mennyiségét(db/g): ");
-                string itemQuantity = Console.ReadLine();
-                Item item = new Item();
-                item.ItemName = itemName;
-                item.Quantity = int.Parse(itemQuantity);
-                shoppingList.Items.Add(item);
-            }
-            else if (input == "n")
-            {
-                isAddingItems = false;
-                Menu.ShowMenu();
-            }
-        }
-        list.Add(shoppingList);
-        await storage.SaveAsync(list);
+        ShoppingList shoppingList = AddItemOptionService.ReadUserShoppingListInput();
+
+        shoppingLists.Add(shoppingList);
+        await _storage.SaveAsync(shoppingLists);
     }
 }
