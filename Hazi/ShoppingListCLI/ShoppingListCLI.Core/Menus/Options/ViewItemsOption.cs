@@ -8,7 +8,7 @@ internal class ViewItemsOption(IStorage storage) : IOption
 {
     private readonly IStorage _storage = storage;
 
-    public async void Open()
+    public async Task Open()
     {
         Console.Clear();
 

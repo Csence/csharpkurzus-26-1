@@ -1,23 +1,24 @@
 ﻿using System.Text.Json;
-
 using ShoppingListCLI.ShoppingListCLI.Core.Models;
 
 namespace ShoppingListCLI.Core.Storage;
 
 public class JsonStorage : IStorage
 {
+    private readonly string _filePath = "shoppingList.json";
+
     public async Task<List<ShoppingList>> LoadAsync()
     {
-        if (!File.Exists("shoppingList.json"))
-        {
-            return new List<ShoppingList>();
-        }
-
         try
         {
-            string json = File.ReadAllText("shoppingList.json");
-
-            return JsonSerializer.Deserialize<List<ShoppingList>>(json) ?? new List<ShoppingList>();
+            if (!File.Exists(_filePath))
+            { 
+                return new List<ShoppingList>();
+            }
+            
+            await using FileStream stream = File.OpenRead(_filePath);
+            return await JsonSerializer.DeserializeAsync<List<ShoppingList>>(stream) ?? new List<ShoppingList>();
+            
         }
         catch (IOException e)
         {
@@ -38,11 +39,18 @@ public class JsonStorage : IStorage
 
     public async Task SaveAsync(List<ShoppingList> shoppingList)
     {
-        try 
-        {
-            string json = JsonSerializer.Serialize(shoppingList);
-
-            File.WriteAllText("shoppingList.json", json);
+        try
+        { 
+            if (!File.Exists(_filePath)) 
+            {
+                await using FileStream stream = File.Create(_filePath);
+                await JsonSerializer.SerializeAsync(stream, shoppingList);
+            }
+            else
+            {
+                await using FileStream stream = File.Create(_filePath);
+                await JsonSerializer.SerializeAsync(stream, shoppingList);
+            }
         }
         catch (IOException e)
         {

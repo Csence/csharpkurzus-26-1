@@ -19,41 +19,27 @@ public class Menu
         Console.Write("Válassz egy opciót(szám): ");
     }
 
-    public void Start()
+    public static async Task Start()
     {
         IStorage storage = new JsonStorage();
         ShowMenu();
 
         while (true)
         {
-            #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            string input = Console.ReadLine().Trim();
-            #pragma warning restore CS8602 // Dereference of a possibly null reference.
+            string? input = Console.ReadLine()?.Trim();
 
             bool isValidInput = Enum.TryParse<MenuOptions>(input, out MenuOptions option);
             if (!isValidInput)
             {
                 Console.WriteLine("Hibás input, próbáld újra!");
             }
-            else if (option == MenuOptions.AddItem)
-            {
-                AddItemOption addItemOption = new AddItemOption(storage);
-                addItemOption.Open();
-            }
-            else if (option == MenuOptions.ViewList)
-            {
-                ViewItemsOption viewItemsOption = new ViewItemsOption(storage);
-                viewItemsOption.Open();
-            }
-            else if (option == MenuOptions.RemoveList)
-            {
-                RemoveItemOption removeItemOption = new RemoveItemOption(storage);
-                removeItemOption.Open();
-            }
-            else if (option == MenuOptions.Exit)
+
+            if (option == MenuOptions.Exit)
             {
                 return;
             }
+
+            MenuOptionsExtensions.MenuOption(option, storage).Open().Wait();
         }
     }
 }

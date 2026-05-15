@@ -13,14 +13,16 @@ internal static class ViewItemsOptionService
         {
             Console.WriteLine("Bevásárlólista neve: " + list.Name);
             Console.WriteLine("Elemek:");
-
-            foreach (Item item in list.Items)
+            if (list.Items != null) 
             {
-                Console.WriteLine("------------------------------");
-                Console.WriteLine("     -Elem neve: " + item.ItemName);
-                Console.WriteLine("     -Elem mennyiség(db/g): " + item.Quantity.ToString());
+                foreach (Item item in list.Items)
+                {
+                    Console.WriteLine("------------------------------");
+                    Console.WriteLine("     -Elem neve: " + item.ItemName);
+                    Console.WriteLine("     -Elem mennyiség(db/g): " + item.Quantity.ToString());
+                }
+                Console.WriteLine("==============================");
             }
-            Console.WriteLine("==============================");
         }
     }
 }

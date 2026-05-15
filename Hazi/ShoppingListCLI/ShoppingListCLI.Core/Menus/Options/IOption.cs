@@ -2,5 +2,5 @@
 
 internal interface IOption
 {
-    public void Open();
+    public Task Open();
 }

@@ -9,9 +9,8 @@ internal static class RemoveItemOptionService
     {
         Console.Write("Add meg a törölni kívánt bevásárlólista nevét: ");
 
-        string shoppingListName = Console.ReadLine();
-        if (shoppingListName.Equals("")
-           | shoppingListName == null)
+        string? shoppingListName = Console.ReadLine();
+        if (shoppingListName == null || shoppingListName.Equals(""))
         {
             Console.WriteLine("A bevásárlólista neve nem lehet üres!\n" +
                 "Próbáld újra!");
